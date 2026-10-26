@@ -1,13 +1,14 @@
-# Tilawah Tracker — Starter (Episode 2)
+# Tilawah Tracker — Starter
 
 A private Quran reading-progress tracker. This starter is the **designed app
 shell**: every page already matches our target design, with placeholder data.
-The *logic* — real authentication, a database, and live calculations — gets
+The _logic_ — real authentication, a database, and live calculations — gets
 built onto this shell over the coming episodes. For now the forms (update last
 stop, login, register) are non-functional stubs.
 
 ## Pages (routed from the top menu)
-- **Today (`/`)** — your progress card (page, juz, % through, pace), your *last stop*, and the *record today's reading* form
+
+- **Today (`/`)** — your progress card (page, juz, % through, pace), your _last stop_, and the _record today's reading_ form
 - **Progress (`/progress`)** — this cycle's progress, pace, and a goal check (are you meeting one khatma a month?)
 - **Khatmas (`/khatmas`)** — total khatmas completed, member-since / cycle dates, and a table of completed khatmas
 - **Login / Register** — placeholder forms, not wired up yet
@@ -30,6 +31,7 @@ Press `Ctrl + C` in the terminal to stop it.
 > `pip install`, and `uv run` runs the app without activating anything.
 
 ## Project structure
+
 ```
 tilawah-tracker/
 ├── app.py              # routes + placeholder data
