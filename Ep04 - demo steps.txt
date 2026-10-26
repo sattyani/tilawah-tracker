@@ -22,3 +22,45 @@ git remote add origin <repository-url>
 # git push <remote> <branch>
 git push -u origin main
 
+
+# SCENARIO 2 — FEATURE BRANCH & PULL REQUEST
+
+# 1. Check Status — Confirm we're on main with no pending changes.
+git status
+
+# 2. Pull Latest Changes — Update local main from GitHub.
+# We already configured the upstream in Scenario 1.
+git pull
+
+# 3. Create Feature Branch — Create a new branch and switch to it.
+git checkout -b update-readme
+
+# 4. Modify README
+
+# 5. Check Status
+git status
+
+# 6. Review Changes
+git diff
+
+# 7. Stage Changes
+git add README.md
+
+# 8. Commit — Save the changes on our feature branch.
+git commit -m "Remove episode reference from README"
+
+# 9. Push Feature Branch
+git push -u origin update-readme
+
+
+# 10. Create Pull Request On GitHub:
+
+# 11. Review and Merge On GitHub:
+
+# 12. Switch back to our local main branch.
+git checkout main
+
+# 13. Pull Merged Changes — Update local main from GitHub.
+git pull
+
+
