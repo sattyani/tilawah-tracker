@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Progress · Tilawah Tracker{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <div class="card-head">
+      <span class="eyebrow">This cycle</span>
+      <span class="cycle-tag">Cycle {{ progress.cycle }}</span>
+    </div>
+    <p class="headline">Page {{ progress.current_page }} <span class="of">/ {{ progress.total_pages }}</span></p>
+    <p class="subline">Juz {{ progress.current_juz }} · about {{ percent }}% through · {{ pages_left }} pages left</p>
+    <div class="progress"><div class="progress-bar" style="width: {{ percent }}%"></div></div>
+  </section>
+
+  <section class="card">
+    <span class="eyebrow">Pace</span>
+    <div class="tiles" style="margin-top:14px">
+      <div class="tile"><span class="n">{{ pace.pages_per_day }}</span><span class="l">Pages / day</span></div>
+      <div class="tile"><span class="n">{{ pace.this_month_pages }}</span><span class="l">This month</span></div>
+      <div class="tile"><span class="n">~{{ days_to_finish }}</span><span class="l">Days to finish</span></div>
+      <div class="tile"><span class="n">{{ pace.cycles_done }}</span><span class="l">Cycles done</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="eyebrow">Goal check</span>
+    <p class="subline" style="margin-top:10px">Target: one khatma a month — about {{ target_per_day }} pages a day.</p>
+    <p style="margin:0">You're reading <strong>{{ pace.pages_per_day }} pages/day</strong> against a target of <strong>{{ target_per_day }}</strong>.</p>
+    {% if on_track %}
+      <span class="kpi kpi-ok">On track — keep it up</span>
+    {% else %}
+      <span class="kpi kpi-behind">Behind target — aim for {{ target_per_day }} pages/day</span>
+    {% endif %}
+  </section>
+{% endblock %}

@@ -1,0 +1,155 @@
+/* Tilawah Tracker — design system (matches the Episode 1 progress card).
+   Cards, navy + amber, serif numbers, soft shadows. */
+
+:root {
+  --navy:   #15253D;   /* headings / strong text */
+  --ink:    #26323f;   /* body text */
+  --muted:  #6b7684;   /* labels, secondary text */
+  --amber:  #D4932E;   /* accent */
+  --amber-soft: #f3e2c6;
+  --bg:     #f4f6f8;   /* page background */
+  --card:   #ffffff;
+  --line:   #e7ecf1;   /* borders */
+  --track:  #eef1f5;   /* progress track */
+  --ok:     #1a7f37;
+  --warn:   #b46a12;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- top bar ---------- */
+.nav {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 24px;
+  height: 60px;
+}
+.brand {
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 17px;
+  letter-spacing: .01em;
+}
+.nav-sections { display: flex; gap: 22px; margin-right: auto; }
+.nav-link {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 15px;
+  padding: 19px 2px;
+  border-bottom: 2px solid transparent;
+}
+.nav-link:hover { color: var(--navy); }
+.nav-link.active { color: var(--navy); font-weight: 600; border-bottom-color: var(--amber); }
+.nav-right { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+.greeting { color: var(--muted); font-size: 14px; }
+
+/* ---------- layout ---------- */
+.container { max-width: 680px; margin: 32px auto; padding: 0 20px; }
+.container.narrow { max-width: 420px; margin-top: 64px; }
+
+.page-title { color: var(--navy); font-size: 15px; font-weight: 700;
+  letter-spacing: .02em; margin: 0 0 14px 2px; }
+
+/* ---------- cards ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgba(20,34,53,.04), 0 4px 16px rgba(20,34,53,.05);
+}
+.card-head { display: flex; justify-content: space-between; align-items: center; }
+.eyebrow { font-size: 13px; font-weight: 700; color: #3a4a5c; letter-spacing: .03em; }
+.cycle-tag { font-size: 12px; font-weight: 700; color: var(--amber);
+  letter-spacing: .08em; text-transform: uppercase; }
+
+/* big number — serif, like the card */
+.headline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px; font-weight: 700; color: var(--navy);
+  margin: 12px 0 4px; letter-spacing: -.01em;
+}
+.headline .of { font-size: 18px; color: var(--muted); font-weight: 400; }
+.subline { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+
+/* progress bar — amber pill */
+.progress { height: 10px; background: var(--track); border-radius: 999px; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--amber); border-radius: 999px; }
+
+/* stat rows (This month / Per day / Cycles done) */
+.rows { margin-top: 18px; }
+.row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 11px 0; border-top: 1px solid var(--line);
+}
+.row:first-child { border-top: 0; }
+.row .label { color: var(--muted); font-size: 14px; }
+.row .value { color: var(--navy); font-weight: 700; font-size: 15px; }
+.row .value .unit { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 4px; }
+
+/* inline stat tiles (pace page) */
+.tiles { display: flex; flex-wrap: wrap; gap: 26px; }
+.tile { display: flex; flex-direction: column; }
+.tile .n { font-family: Georgia, serif; font-size: 24px; font-weight: 700; color: var(--navy); }
+.tile .l { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* last stop */
+.laststop { display: flex; gap: 30px; margin-top: 6px; }
+.laststop .k { font-size: 13px; color: var(--muted); }
+.laststop .v { font-size: 20px; font-weight: 700; color: var(--navy);
+  font-family: Georgia, serif; }
+
+/* goal check badge */
+.kpi { display: inline-block; margin-top: 10px; padding: 6px 12px;
+  border-radius: 999px; font-size: 13px; font-weight: 700; }
+.kpi-ok { background: #e7f4ec; color: var(--ok); }
+.kpi-behind { background: var(--amber-soft); color: var(--warn); }
+
+/* table (khatmas / recent) */
+.log { width: 100%; border-collapse: collapse; }
+.log th, .log td { text-align: left; padding: 10px 8px; font-size: 14px;
+  border-bottom: 1px solid var(--line); }
+.log th { color: var(--muted); font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .04em; }
+.log td { color: var(--ink); }
+.log tr:last-child td { border-bottom: 0; }
+.log .num { font-weight: 700; color: var(--navy); }
+
+/* forms */
+h2.card-title { color: var(--navy); font-size: 20px; margin: 0 0 4px; }
+.hint { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+form label { display: block; font-size: 13px; color: var(--muted);
+  font-weight: 600; margin-bottom: 14px; }
+form input {
+  display: block; width: 100%; margin-top: 6px; padding: 11px 12px;
+  border: 1px solid var(--line); border-radius: 10px; font-size: 15px;
+  color: var(--ink); background: #fcfdfe;
+}
+form input:focus { outline: none; border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(212,147,46,.15); }
+.btn {
+  display: inline-block; border: 0; cursor: pointer;
+  background: var(--amber); color: #fff; font-weight: 700; font-size: 15px;
+  padding: 11px 18px; border-radius: 10px; margin-top: 4px;
+}
+.btn:hover { background: #c3842a; }
+.btn-full { width: 100%; }
+.form-foot { margin-top: 16px; font-size: 14px; color: var(--muted); text-align: center; }
+.form-foot a { color: var(--amber); text-decoration: none; font-weight: 600; }
+
+.brand-center { text-align: center; color: var(--navy); font-weight: 700;
+  font-size: 18px; margin-bottom: 20px; letter-spacing: .01em; }

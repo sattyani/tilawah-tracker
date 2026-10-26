@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Khatmas · Tilawah Tracker{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <span class="eyebrow">Overview</span>
+    <div class="tiles" style="margin-top:14px">
+      <div class="tile"><span class="n">{{ pace.cycles_done }}</span><span class="l">Khatmas completed</span></div>
+      <div class="tile"><span class="n">{{ progress.current_page }}/{{ progress.total_pages }}</span><span class="l">Current position</span></div>
+      <div class="tile"><span class="n">{{ user.member_since }}</span><span class="l">Member since</span></div>
+      <div class="tile"><span class="n">{{ progress.cycle_started }}</span><span class="l">This cycle started</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="eyebrow">Completed khatmas</span>
+    <table class="log" style="margin-top:12px">
+      <thead>
+        <tr><th>#</th><th>Started</th><th>Finished</th><th>Days</th></tr>
+      </thead>
+      <tbody>
+        {% for k in khatmas %}
+          <tr>
+            <td class="num">{{ k.n }}</td>
+            <td>{{ k.started }}</td>
+            <td>{{ k.finished }}</td>
+            <td>{{ k.days }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Today · Tilawah Tracker{% endblock %}
+
+{% block content %}
+  <!-- Progress card — matches the Episode 1 design -->
+  <section class="card">
+    <div class="card-head">
+      <span class="eyebrow">Your progress</span>
+      <span class="cycle-tag">Cycle {{ progress.cycle }}</span>
+    </div>
+    <p class="headline">Page {{ progress.current_page }} <span class="of">/ {{ progress.total_pages }}</span></p>
+    <p class="subline">Juz {{ progress.current_juz }} · ayah {{ progress.ayah }} · about {{ percent }}% through</p>
+    <div class="progress"><div class="progress-bar" style="width: {{ percent }}%"></div></div>
+    <div class="rows">
+      <div class="row"><span class="label">This month</span><span class="value">{{ pace.this_month_pages }} <span class="unit">pages</span></span></div>
+      <div class="row"><span class="label">Per day</span><span class="value">{{ pace.pages_per_day }} <span class="unit">pages</span></span></div>
+      <div class="row"><span class="label">Cycles done</span><span class="value">{{ pace.cycles_done }}</span></div>
+    </div>
+  </section>
+
+  <!-- Update last stop (stub) -->
+  <section class="card">
+    <h2 class="card-title">Record today's reading</h2>
+    <p class="hint">Update where you stopped. (Doesn't save yet — we wire this up in a later episode.)</p>
+    <form method="post" action="{{ url_for('update') }}">
+      <label>Page you stopped on
+        <input type="number" name="page" placeholder="e.g. 150">
+      </label>
+      <label>Ayah <span style="font-weight:400">(optional)</span>
+        <input type="number" name="ayah" placeholder="e.g. 3">
+      </label>
+      <button class="btn" type="submit">Save last stop</button>
+    </form>
+  </section>
+{% endblock %}

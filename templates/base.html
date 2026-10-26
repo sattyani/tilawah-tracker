@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Tilawah Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="{{ url_for('home') }}">Tilawah Tracker</a>
+
+    {% if user %}
+      <div class="nav-sections">
+        <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Today</a>
+        <a class="nav-link {% if request.endpoint == 'progress' %}active{% endif %}" href="{{ url_for('progress') }}">Progress</a>
+        <a class="nav-link {% if request.endpoint == 'khatmas' %}active{% endif %}" href="{{ url_for('khatmas') }}">Khatmas</a>
+      </div>
+      <div class="nav-right">
+        <span class="greeting">{{ user.name }}</span>
+        <a class="nav-link" href="{{ url_for('login') }}">Logout</a>
+      </div>
+    {% else %}
+      <div class="nav-right">
+        <a class="nav-link {% if request.endpoint == 'login' %}active{% endif %}" href="{{ url_for('login') }}">Login</a>
+        <a class="nav-link {% if request.endpoint == 'register' %}active{% endif %}" href="{{ url_for('register') }}">Register</a>
+      </div>
+    {% endif %}
+  </nav>
+
+  <main class="container {% block container_class %}{% endblock %}">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

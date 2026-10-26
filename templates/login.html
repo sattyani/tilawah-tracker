@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Login · Tilawah Tracker{% endblock %}
+{% block container_class %}narrow{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h2 class="card-title">Welcome back</h2>
+    <p class="hint">Log in to track your reading. (Not wired up yet — a later episode.)</p>
+    <form method="post" action="{{ url_for('login') }}">
+      <label>Email
+        <input type="email" name="email" placeholder="you@example.com">
+      </label>
+      <label>Password
+        <input type="password" name="password" placeholder="••••••••">
+      </label>
+      <button class="btn btn-full" type="submit">Login</button>
+    </form>
+    <p class="form-foot">No account yet? <a href="{{ url_for('register') }}">Create one</a></p>
+  </section>
+{% endblock %}

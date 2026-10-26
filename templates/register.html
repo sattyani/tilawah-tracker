@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Register · Tilawah Tracker{% endblock %}
+{% block container_class %}narrow{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h2 class="card-title">Create your account</h2>
+    <p class="hint">Start tracking your khatmas. (Not wired up yet — a later episode.)</p>
+    <form method="post" action="{{ url_for('register') }}">
+      <label>Name
+        <input type="text" name="name" placeholder="Samir">
+      </label>
+      <label>Email
+        <input type="email" name="email" placeholder="you@example.com">
+      </label>
+      <label>Password
+        <input type="password" name="password" placeholder="••••••••">
+      </label>
+      <label>Starting page <span style="font-weight:400">(if you're mid-Quran)</span>
+        <input type="number" name="start_page" placeholder="1">
+      </label>
+      <button class="btn btn-full" type="submit">Create account</button>
+    </form>
+    <p class="form-foot">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+  </section>
+{% endblock %}
