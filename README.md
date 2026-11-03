@@ -122,6 +122,17 @@ Press `Ctrl + C` in the terminal to stop it.
 > Used `venv` + `pip` before? `uv sync` replaces `python -m venv` + activate +
 > `pip install`, and `uv run` runs the app without activating anything.
 
+## Development conventions
+
+- **Use uv for everything.** Never `pip` or `python -m venv`.
+- **Stack:** Flask, Jinja templates, and one stylesheet (`static/style.css`).
+  No JavaScript frameworks.
+- **Don't add a dependency** without agreeing on it first.
+- **Keep it simple:** small, focused functions with clear names, and no
+  abstractions until they're needed.
+- **Spec first:** every feature starts from a written spec, and the code does
+  only what that spec asks for.
+
 ## Project structure
 
 ```
