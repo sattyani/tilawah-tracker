@@ -4,17 +4,21 @@ A small, private web app for tracking daily Quran reading through the 604-page
 Madinah Mushaf. You record where you stopped; the app counts the pages, keeps
 your history, and tracks each khatma.
 
+It answers three questions: where do I continue, how much have I read, and how
+has my reading developed over time?
+
 Built in the open in the TechSpire series _Spec-Driven Development_: one
-feature per episode, each from a written spec.
+feature per episode, each from a written spec. The product stays deliberately
+small; the sophistication comes from the specs and the workflow, not from
+features.
 
-## Status
+This README is the project's overview, scope and requirements.
 
-This is the **designed app shell**: every page matches the target design, but
-the data is hardcoded and the forms (record a stop, login, register) don't work
-yet. Features are added one specification at a time.
+## Terms
 
-The full product definition, with rules, scope and success criteria, is in
-[docs/project-overview.md](docs/project-overview.md).
+- **Stop**: the page number you record after reading. Each stop is one entry.
+- **Reading day**: a date with at least one recorded stop.
+- **Khatma**: one full read of the Mushaf, page 1 to 604.
 
 ## How it works
 
@@ -34,17 +38,36 @@ The full product definition, with rules, scope and success criteria, is in
   can be recorded.
 - Recorded entries **can't be edited or deleted**, and you can't change your
   position or the date by hand.
-- **Private by default.** Every account sees only its own data.
+- The **ayah** is shown back to you only. It isn't used in any calculation or
+  checked against the page.
+- **Private by default.** Every account sees only its own data, enforced on the
+  server, including for manually typed URLs.
+- Juz and hizb come from the page number, using a fixed 604-page table generated
+  once during development.
+
+## Pages
+
+- **Landing**: what the app is, with links to register and log in
+- **Register / Login / Logout**
+- **Dashboard**: last stop; position (page, juz, hizb); this khatma's progress;
+  total pages; reading days; average pages per reading day; completed khatmas;
+  recent reading days; **Finish khatma** at page 604
+- **Record a stop**: shows your last stop; takes a stop page and an optional ayah
+- **History**: reading days, newest first, with the pages read each day
+- **Yearly summary**: for a chosen year: pages, reading days, average pages per
+  reading day, khatmas completed
 
 ## Out of scope
 
 - Quran text, translation, tafsir, or surah and ayah data
 - Reading time, duration, or speed
 - Personal notes
+- Entering or changing the date
 - Goals, targets, streaks, schedules, or reminders
 - Editing or deleting entries
 - Starting a new khatma before page 604
-- Groups, sharing, or any social features
+- More than one Mushaf edition
+- Groups, sharing, or any social features; any role besides a registered user
 - Audio, tajweed, or memorization tracking
 - Import or export, attachments, or runtime integrations
 - AI features inside the app
@@ -52,15 +75,37 @@ The full product definition, with rules, scope and success criteria, is in
 
 Nothing here gets added without an approved change spec.
 
-## Pages (current shell)
+## Build order
 
-- **Today (`/`)** — progress card, your _last stop_, and the record form
-- **Progress (`/progress`)** — this cycle's progress
-- **Khatmas (`/khatmas`)** — completed khatmas and totals
-- **Login / Register** — placeholder forms, not wired up yet
+Each step gets its own spec before any code:
 
-> The shell still shows a monthly goal check and pace target on the Progress
-> page. Those are out of scope and will be removed when that page is built.
+1. Foundation and persistence
+2. Landing page
+3. Register
+4. Login, logout, and protected pages
+5. Entries and the forward-only rules
+6. Record a stop
+7. Dashboard and khatma progress
+8. History
+9. Summary statistics
+10. Yearly summary
+11. Finish khatma and start a new one
+12. Ownership checks and end-to-end verification
+
+## Current state
+
+This is the **designed app shell** from Episode 2: the pages match the target
+design, but the data is hardcoded and the forms (record a stop, login, register)
+don't work yet. Where the shell disagrees with this README, the README wins. In
+particular, the shell's monthly goal check, target pages per day and on-track
+check will be removed.
+
+Current shell pages:
+
+- **Today (`/`)**: progress card, your _last stop_, and the record form
+- **Progress (`/progress`)**: this cycle's progress
+- **Khatmas (`/khatmas`)**: completed khatmas and totals
+- **Login / Register**: placeholder forms, not wired up yet
 
 ## Run it
 
@@ -81,19 +126,17 @@ Press `Ctrl + C` in the terminal to stop it.
 
 ```
 tilawah-tracker/
-├── app.py                   # routes + placeholder data
-├── pyproject.toml           # dependencies (managed by uv)
-├── docs/
-│   └── project-overview.md  # what we're building: rules, scope, success criteria
+├── app.py              # routes + placeholder data
+├── pyproject.toml      # dependencies (managed by uv)
 ├── templates/
-│   ├── base.html            # top nav + page layout
-│   ├── index.html           # Today: progress card + last stop + record form
-│   ├── progress.html        # This cycle's progress
-│   ├── khatmas.html         # completed khatmas + totals
-│   ├── login.html           # placeholder login
-│   └── register.html        # placeholder register
+│   ├── base.html       # top nav + page layout
+│   ├── index.html      # Today: progress card + last stop + record form
+│   ├── progress.html   # This cycle's progress
+│   ├── khatmas.html    # completed khatmas + totals
+│   ├── login.html      # placeholder login
+│   └── register.html   # placeholder register
 └── static/
-    └── style.css            # the design system (cards, navy + amber, serif numbers)
+    └── style.css       # the design system (cards, navy + amber, serif numbers)
 ```
 
 — TechSpire · @techspire-sa
