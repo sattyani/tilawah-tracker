@@ -128,10 +128,27 @@ Press `Ctrl + C` in the terminal to stop it.
 - **Stack:** Flask, Jinja templates, and one stylesheet (`static/style.css`).
   No JavaScript frameworks.
 - **Don't add a dependency** without agreeing on it first.
-- **Keep it simple:** small, focused functions with clear names, and no
-  abstractions until they're needed.
 - **Spec first:** every feature starts from a written spec, and the code does
   only what that spec asks for.
+
+## Coding conventions
+
+- **PEP 8 style:** 4-space indentation; `snake_case` for functions and variables;
+  `UPPER_CASE` for constants.
+- **Type hints** on every function's parameters and return value.
+- **Thin routes:** a route reads the request, calls a function, and renders a
+  template. Reading rules (pages read, forward-only checks) live in plain
+  functions, so they can be tested on their own.
+- **Validate on the server:** never trust form values; check every input before
+  using it.
+- **Safe SQL:** always use query parameters; never build SQL with string formatting.
+- **Where things belong:** routes in `app.py`; all database code in `db.py`,
+  never inside a route; every page is a template extending `base.html`; all
+  styles in `static/style.css`, no inline `<style>` tags.
+- **Templates:** use `url_for()` for every internal link; never hardcode URLs.
+- **Errors:** use `abort()` for HTTP errors, not plain error strings.
+- **Database:** SQLite through Python's built-in `sqlite3` module; no ORM.
+- **Port 5001:** don't change it (macOS uses 5000 for AirPlay).
 
 ## Project structure
 
