@@ -11,3 +11,6 @@ Thumbs.db
 
 # Personal recording notes (not part of the app)
 _notes/
+
+# SQLite database files (created by db.py, never committed)
+*.db
