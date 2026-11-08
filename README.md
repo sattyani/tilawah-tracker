@@ -12,7 +12,8 @@ feature per episode, each from a written spec. The product stays deliberately
 small; the sophistication comes from the specs and the workflow, not from
 features.
 
-This README is the project's overview, scope and requirements.
+This README is the product overview: what we're building, its rules, and its scope.
+Each feature's detailed requirements live in its own spec.
 
 ## Terms
 
@@ -96,7 +97,7 @@ Each step gets its own spec before any code:
 
 This is the **designed app shell** from Episode 2: the pages match the target
 design, but the data is hardcoded and the forms (record a stop, login, register)
-don't work yet. Where the shell disagrees with this README, the README wins. In
+don't work yet. Where the shell disagrees with this README, the shell will change. In
 particular, the shell's monthly goal check, target pages per day and on-track
 check will be removed.
 
@@ -155,6 +156,8 @@ Press `Ctrl + C` in the terminal to stop it.
 ```
 tilawah-tracker/
 ├── app.py              # routes + placeholder data
+├── db.py               # all database code (empty until step 1)
+├── tilawah.db          # SQLite database (created by db.py, not committed)
 ├── pyproject.toml      # dependencies (managed by uv)
 ├── templates/
 │   ├── base.html       # top nav + page layout
@@ -163,8 +166,9 @@ tilawah-tracker/
 │   ├── khatmas.html    # completed khatmas + totals
 │   ├── login.html      # placeholder login
 │   └── register.html   # placeholder register
-└── static/
-    └── style.css       # the design system (cards, navy + amber, serif numbers)
+├── static/
+│   └── style.css       # the design system (cards, navy + amber, serif numbers)
+└── tests/              # pytest tests (empty for now)
 ```
 
 — TechSpire · @techspire-sa
