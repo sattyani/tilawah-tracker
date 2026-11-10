@@ -7,21 +7,6 @@ Built spec-first.
 
 ## Architecture
 
-```
-tilawah-tracker/
-├── app.py            # All routes
-├── db.py             # All database code — empty until step 1
-├── tilawah.db        # SQLite database — created by db.py, never committed
-├── templates/
-│   ├── base.html     # Shared layout — every page extends it
-│   └── *.html        # One template per page
-├── static/
-│   └── style.css     # All styles
-├── tests/            # pytest tests — empty until we write tests
-├── pyproject.toml    # Dependencies — managed by uv
-└── README.md         # High-level product overview and scope
-```
-
 Key files:
 
 - `app.py` — every route lives here. Routes stay thin: read the request, call a function,
